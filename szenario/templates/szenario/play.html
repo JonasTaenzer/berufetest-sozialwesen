@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ step.title }}{% endblock %}
+{% block content %}
+{% include "szenario/_trust.html" %}
+<div class="card shadow-sm border-0">
+  <div class="card-body p-4">
+    <div class="small text-secondary mb-2">Situation {{ number }}</div>
+    <h1 class="h4 brand">{{ step.title }}</h1>
+    <p class="fs-5">{{ step.text|linebreaksbr }}</p>
+    <p class="fw-semibold mt-4">Was tust du?</p>
+    <form method="post" action="{% url 'szenario:answer' session.pk %}">
+      {% csrf_token %}
+      <div class="d-grid gap-2">
+        {% for choice in choices %}
+          <button type="submit" name="choice_id" value="{{ choice.pk }}"
+                  class="btn btn-outline-dark choice-btn p-3">{{ choice.text }}</button>
+        {% endfor %}
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Protokoll {{ session.participant_name }}{% endblock %}
+{% block content %}
+<a href="{% url 'szenario:protocol_list' %}" class="small"><i class="bi bi-arrow-left"></i> Alle Protokolle</a>
+<h1 class="h3 brand mt-2">Protokoll: {{ session.participant_name }}</h1>
+<p class="text-secondary">{{ session.scenario }} · {{ session.get_status_display }} · gestartet {{ session.started_at|date:"d.m.Y H:i" }}</p>
+<div class="alert alert-light border small">
+  Kein Punktwert. Das Protokoll ist die Grundlage für das Motivationsinterview.
+  Die Zeit ist nur ein Hinweis, sie hängt auch von Lesetempo und Übung am Computer ab.
+  Markiert wird ab {{ min_answers }} Antworten je Situation: weniger als die Hälfte oder mehr als das Doppelte des Durchschnitts.
+</div>
+{% for row in rows %}
+  {% with a=row.answer %}
+  <div class="card shadow-sm border-0 mb-3">
+    <div class="card-body">
+      <div class="d-flex justify-content-between flex-wrap gap-2">
+        <span class="badge text-bg-light border">{{ a.step.category }}</span>
+        <span class="small">
+          <i class="bi bi-stopwatch"></i> {{ a.duration_seconds|floatformat:0 }} s
+          {% if row.avg %}<span class="text-secondary">(Ø {{ row.avg|floatformat:0 }} s)</span>{% endif %}
+          {% if row.flag %}<span class="badge text-bg-warning ms-1">{{ row.flag }}</span>{% endif %}
+        </span>
+      </div>
+      <h2 class="h6 mt-2 mb-1">{{ forloop.counter }}. {{ a.step.title }}</h2>
+      <p class="mb-2"><strong>Entscheidung:</strong> {{ a.choice.text }}</p>
+      {% if a.step.interview_question %}
+        <p class="mb-0 text-secondary"><i class="bi bi-chat-left-text"></i> {{ a.step.interview_question }}</p>
+      {% endif %}
+    </div>
+  </div>
+  {% endwith %}
+{% empty %}
+  <p class="text-secondary">Noch keine Entscheidungen.</p>
+{% endfor %}
+{% endblock %}

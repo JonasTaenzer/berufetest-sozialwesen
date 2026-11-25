@@ -1,0 +1,8 @@
+<div class="trust mb-4">
+  <div class="d-flex justify-content-between small text-secondary mb-1">
+    <span><i class="bi bi-heart"></i> Vertrauen der Menschen, die du betreust</span>
+  </div>
+  <div class="progress" role="progressbar" aria-label="Vertrauen" aria-valuenow="{{ session.trust }}" aria-valuemin="0" aria-valuemax="100" style="height: 10px">
+    <div class="progress-bar" style="width: {{ session.trust }}%"></div>
+  </div>
+</div>

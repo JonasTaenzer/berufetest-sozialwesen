@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Protokolle{% endblock %}
+{% block content %}
+<h1 class="h3 brand mb-3">Protokolle</h1>
+<div class="list-group shadow-sm">
+  {% for s in sessions %}
+    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+       href="{% url 'szenario:protocol_detail' s.pk %}">
+      <span><strong>{{ s.participant_name }}</strong><br><small class="text-secondary">{{ s.scenario }} · {{ s.started_at|date:"d.m.Y H:i" }}</small></span>
+      <span class="badge {% if s.status == 'completed' %}text-bg-success{% else %}text-bg-secondary{% endif %}">{{ s.get_status_display }}</span>
+    </a>
+  {% empty %}
+    <div class="list-group-item text-secondary">Noch keine Durchläufe.</div>
+  {% endfor %}
+</div>
+{% endblock %}

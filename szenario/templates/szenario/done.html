@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "szenario/_trust.html" %}
+<div class="card shadow-sm border-0">
+  <div class="card-body p-4 text-center">
+    <i class="bi bi-sunset fs-1 brand"></i>
+    <h1 class="h3 brand mt-2">Feierabend, {{ session.participant_name }}!</h1>
+    <p class="lead">Du hast den Arbeitstag geschafft. Vielen Dank.</p>
+    <p class="text-secondary">Deine Entscheidungen sind gespeichert. Im nächsten Gespräch sprecht ihr darüber, wie du die Situationen gelöst hast.</p>
+  </div>
+</div>
+{% endblock %}

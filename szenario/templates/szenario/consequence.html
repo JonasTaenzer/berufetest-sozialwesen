@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "szenario/_trust.html" %}
+<div class="card shadow-sm border-0">
+  <div class="card-body p-4">
+    <div class="small text-secondary mb-2">Was passiert</div>
+    <p class="fs-5">{{ last.choice.consequence_text|linebreaksbr }}</p>
+    <a class="btn btn-success mt-2" href="{% url 'szenario:play' session.pk %}">
+      Weiter <i class="bi bi-arrow-right"></i>
+    </a>
+  </div>
+</div>
+{% endblock %}
