@@ -19,6 +19,10 @@ Das Spiel vergibt **keine Punkte**. Es speichert, wie eine Situation gelöst wur
 
 ![Protokoll für den Coach](docs/protokoll.png)
 
+## Meilensteine
+
+Die fünf Ergebnisse des Projekts und ihr Stand stehen in [docs/MEILENSTEINE.md](docs/MEILENSTEINE.md). Ergebnis 1 ist erledigt: [Merkmal × Beruf und gemeinsamer Nenner](docs/ergebnis-1-merkmal-beruf.md).
+
 ## Starten
 
 Voraussetzung: Python 3.10 oder neuer.
